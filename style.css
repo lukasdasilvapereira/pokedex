@@ -24,3 +24,18 @@ main {
     width: 100%;
     max-width: 450px;
 }
+
+.pokemon-image {
+    position: absolute;
+    left: 60%;
+    bottom: 40%;
+    transform: translate(-63%, 20%);
+    height: 18%;
+    font-size: clamp(8px, 5vw, 25px);
+}
+
+.pokemon-data {
+    position: absolute;
+    bottom: 39%;
+    right: 23%;
+}
