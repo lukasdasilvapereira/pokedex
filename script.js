@@ -8,21 +8,39 @@ const next = document.querySelector('.next');
 
 
 async function fetchPokemon(pokemon) {
-    const apiResponse = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon.tolowerCase()}`);
+    try {
+        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon.toLowerCase()}`);
 
-    const date = await apiResponse.json();
-    return date;
+        if (response.ok) {
+            const data = await response.json();
+            return data;
+        } else {
+            // Retorna null se o Pokémon não for encontrado
+            return null;
+        }
+    } catch (error) {
+        console.error("Erro ao buscar Pokémon:", error);
+        return null;
+    }
 }
+
 
 async function renderPokemon(pokemon) {
     const data = await fetchPokemon(pokemon);
-    name.innerHTML = data.name;
-    number.innerHTML = data.id;
-    image.src = data['sprites']['versions']['generation-v']['black-white']['animated']['front_default'];
-     input.value = '';
+    if (data) {
+        name.innerHTML = data.name;
+        number.innerHTML = data.id;
+        image.src = data['sprites']['versions']['generation-v']['black-white']['animated']['front_default'];
+
+        input.value = '';
+    } else {
+        name.textContent = 'Not Found';
+        number.textContent = '';
+        image.src = '';
+    }
 }
 
-form.addEventListener("submit" , (event) => {
+form.addEventListener("submit", (event) => {
     event.preventDefault()
     renderPokemon(input.value);
 })
