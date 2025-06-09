@@ -27,8 +27,8 @@ main {
 
 .pokemon-image {
     position: absolute;
-    left: 60%;
-    bottom: 40%;
+    left: 50%;
+    bottom: 55%;
     transform: translate(-63%, 20%);
     height: 18%;
     font-size: clamp(8px, 5vw, 25px);
@@ -38,6 +38,7 @@ main {
     position: absolute;
     bottom: 40%;
     right: 23%;
+    text-transform: capitalize;
 }
 
 .form {
